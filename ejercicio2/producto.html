@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<style>
+		/** SELECTOR ELEMENTO **/
+		h1 {
+			text-align: center;
+		}
+		/** SELECTOR CLASE **/
+		.tabla-centrada {
+			margin-right: auto;
+			margin-left: auto;
+		}
+		/** SELECTOR ID **/
+		#tabla-form tr:last-child td {
+			text-align: center;
+		}
+		#tabla-productos tr:nth-child(odd) td {
+			background-color: lightgray;
+		}
+		#tabla-productos tr:nth-child(even) td {
+			background-color: darkgray;
+		}
+		#tabla-productos th {
+			background-color: gray;
+		}
+		#tabla-productos a {
+			color: black;
+		}
+		#tabla-productos td:nth-child(1),
+		#tabla-productos td:nth-child(3),
+		#tabla-productos td:nth-child(4),
+		#tabla-productos td:nth-child(5) {
+			text-align: center;
+		}
+
+	</style>
+	<script src="js/Producto.js"></script>
+	<script src="js/ProductoUtil.js"></script>
+	<script>
+		var productoUtil = new ProductoUtil();
+
+		var initProductoUtil = function() {
+			productoUtil.agregar(new Producto("TV", 700));
+			productoUtil.agregar(new Producto("Cámara", 300));
+			productoUtil.agregar(new Producto("DVD", 200));
+		};
+
+		var imprimirTabla1 = function() {
+			var productos = productoUtil.obtenerTodos();
+			
+			var tbody = document
+				.getElementById("tabla-productos-tbody");
+			tbody.innerHTML = "";
+
+			for (var i in productos) {
+				var p = productos[i];
+
+				var a, td;
+				var tr = document.createElement("tr");
+
+				// Id
+				td = document.createElement("td");
+				td.innerHTML = p.getId();
+				tr.appendChild(td);
+
+				// Nombre
+				td = document.createElement("td");
+				td.innerHTML = p.getNombre();
+				tr.appendChild(td);
+
+				// Precio
+				td = document.createElement("td");
+				td.innerHTML = p.getPrecio();
+				tr.appendChild(td);
+
+				// Mostrar
+				td = document.createElement("td");
+				a = document.createElement("a");
+				a.setAttribute("href", "#");
+				a.innerHTML = "mostrar";
+				td.appendChild(a);
+				tr.appendChild(td);
+
+				// Eliminar
+				td = document.createElement("td");
+				a = document.createElement("a");
+				a.setAttribute("href", "#");
+				a.innerHTML = "eliminar";
+				td.appendChild(a);
+				tr.appendChild(td);
+
+				tbody.appendChild(tr);
+			}
+
+		};
+
+		var imprimirTabla2 = function() {
+			var productos = productoUtil.obtenerTodos();
+			
+			var html = "";
+			for (var i in productos) {
+				var p = productos[i];
+
+				html += "<tr>" +
+					"<td>" + p.getId() + "</td>" +
+					"<td>" + p.getNombre() + "</td>" + 
+					"<td>" + p.getPrecio() + "</td>" + 
+					"<td><a href=''>mostrar</a></td>" + 
+					"<td><a href=''>eliminar</a></td>" +
+					"</tr>";
+			}
+
+			document
+				.getElementById("tabla-productos-tbody")
+				.innerHTML = html;
+		};
+
+		var init = function() {
+			initProductoUtil();
+			imprimirTabla2();
+		};
+	</script>
+</head>
+<body onload="init()">
+	<h1>Productos</h1>
+	<table id="tabla-form" class="tabla-centrada">
+		<tr>
+			<td>Nombre</td>
+			<td><input type="text" id="nombre"></td>
+		</tr>
+		<tr>
+			<td>Precio</td>
+			<td><input type="number" id="cantidad"></td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<input type="button" value="Guardar">
+			</td>
+		</tr>
+	</table>
+	<hr>
+	<table id="tabla-productos" class="tabla-centrada"> 
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Nombre</th>
+				<th>Precio</th>
+				<th>Mostrar</th>
+				<th>Eliminar</th>
+			</tr>
+		</thead>
+		<tbody id="tabla-productos-tbody">
+		</tbody>
+	</table>
+</body>
+</html>
