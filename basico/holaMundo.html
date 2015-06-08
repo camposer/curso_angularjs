@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script>
+		var a = 2;
+		var b = 3;
+		var hola = "hola";
+
+		function sumar(a, b) {
+			return a + b;
+		}
+
+		var multiplicar = function(a, b) {
+			return a * b;
+		};
+
+		document.writeln(a + " + " + b + " = " + 
+			sumar(a, b));
+
+		document.writeln(a + " * " + b + " = " + 
+			multiplicar(a, b));
+
+		/**** ESTRUCTURAS DE CONTROL ******/
+		var numeros = [ "uno", "dos", "tres" ];
+
+		for (var i in numeros)
+			document.writeln(numeros[i] + "<br>");
+
+		var i = 0;
+		for (;true;) {
+			if (i == 3)
+				break;
+			document.writeln(numeros[i++] + "<br>");			
+		}
+	</script>
+</head>
+<body>
+
+</body>
+</html>
