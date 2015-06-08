@@ -36,15 +36,26 @@
 		}
 
 	</style>
-	<script src="js/Producto.js"></script>
-	<script src="js/ProductoUtil.js"></script>
+	<script src="js/ProductoUtil-json.js"></script>
 	<script>
 		var productoUtil = new ProductoUtil();
 
 		var initProductoUtil = function() {
-			productoUtil.agregar(new Producto("TV", 700));
-			productoUtil.agregar(new Producto("Cámara", 300));
-			productoUtil.agregar(new Producto("DVD", 200));
+			var p1 = {
+				nombre: "TV"
+			};
+			p1["precio"] = 700;
+			productoUtil.agregar(p1);
+
+			var p2 = Object.create(p1);
+			p2.nombre = "Cámara";
+			p2.precio = 300;
+			productoUtil.agregar(p2);
+
+			productoUtil.agregar({
+				"nombre": "DVD", 
+				precio: 200
+			});
 		};
 
 		var imprimirTabla1 = function() {
@@ -62,17 +73,17 @@
 
 				// Id
 				td = document.createElement("td");
-				td.innerHTML = p.getId();
+				td.innerHTML = p.id;
 				tr.appendChild(td);
 
 				// Nombre
 				td = document.createElement("td");
-				td.innerHTML = p.getNombre();
+				td.innerHTML = p.nombre;
 				tr.appendChild(td);
 
 				// Precio
 				td = document.createElement("td");
-				td.innerHTML = p.getPrecio();
+				td.innerHTML = p.precio;
 				tr.appendChild(td);
 
 				// Mostrar
@@ -104,11 +115,11 @@
 				var p = productos[i];
 
 				html += "<tr>" +
-					"<td>" + p.getId() + "</td>" +
-					"<td>" + p.getNombre() + "</td>" + 
-					"<td>" + p.getPrecio() + "</td>" + 
-					"<td><a href='#' onclick='mostrar(" + p.getId() + ")'>mostrar</a></td>" +
-					"<td><a href='#' onclick='eliminar(" + p.getId() + ")'>eliminar</a></td>" +
+					"<td>" + p.id + "</td>" +
+					"<td>" + p.nombre + "</td>" + 
+					"<td>" + p.precio + "</td>" + 
+					"<td><a href='#' onclick='mostrar(" + p.id + ")'>mostrar</a></td>" +
+					"<td><a href='#' onclick='eliminar(" + p.id + ")'>eliminar</a></td>" +
 					"</tr>";
 			}
 
@@ -131,9 +142,12 @@
 			if (/[a-z0-9 ]{2,}/i.test(nombre) && 
 					/[0-9]+/.test(precio)) {
 				
-				var p = new Producto(nombre, precio);		
+				var p = {
+					nombre: nombre,
+					precio: precio
+				};		
 				if (productoId) {
-					p.setId(productoId);
+					p.id = productoId;
 					productoUtil.modificar(p);	
 				} else {
 					productoUtil.agregar(p);	
@@ -151,13 +165,13 @@
 
 			document
 				.getElementById("productoId")
-				.value = p.getId();
+				.value = p.id;
 			document
 				.getElementById("nombre")
-				.value = p.getNombre();
+				.value = p.nombre;
 			document
 				.getElementById("precio")
-				.value = p.getPrecio();
+				.value = p.precio;
 		};
 
 		var limpiar = function() {
