@@ -108,7 +108,7 @@
 					"<td>" + p.getNombre() + "</td>" + 
 					"<td>" + p.getPrecio() + "</td>" + 
 					"<td><a href=''>mostrar</a></td>" + 
-					"<td><a href=''>eliminar</a></td>" +
+					"<td><a href='#' onclick='eliminar(" + p.getId() + ")'>eliminar</a></td>" +
 					"</tr>";
 			}
 
@@ -117,9 +117,34 @@
 				.innerHTML = html;
 		};
 
+		var eliminar = function(id) {
+			productoUtil.eliminar(id);
+			imprimirProductos();
+		};
+
+		var guardar = function() {
+			var nombre = document.getElementById("nombre").value;
+			var precio = document.getElementById("precio").value;
+
+			// TODO Mejorar validaciones de precio
+			if (/[a-z0-9 ]{3,}/i.test(nombre) && 
+					/[0-9]+/.test(precio)) {
+				
+				productoUtil.agregar(new Producto(nombre, precio));
+
+				imprimirProductos();
+			} else {
+				window.alert("Nombre o precio inválido");
+			}
+		};
+
+		var imprimirProductos = function() {
+			imprimirTabla2();
+		};
+
 		var init = function() {
 			initProductoUtil();
-			imprimirTabla2();
+			imprimirProductos();
 		};
 	</script>
 </head>
@@ -132,11 +157,11 @@
 		</tr>
 		<tr>
 			<td>Precio</td>
-			<td><input type="number" id="cantidad"></td>
+			<td><input type="number" id="precio"></td>
 		</tr>
 		<tr>
 			<td colspan="2">
-				<input type="button" value="Guardar">
+				<input type="button" value="Guardar" onclick="guardar()">
 			</td>
 		</tr>
 	</table>
