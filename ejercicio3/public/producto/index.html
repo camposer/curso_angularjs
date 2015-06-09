@@ -32,24 +32,13 @@
 
 			for (var i in productos) {
 				var p = productos[i];
-
-				var a, td;
 				var tr = $("<tr></tr>");
 
-				td = $("<tr>" + p.id + "</tr>");
-				td.appendTo(tr);
-
-				td = $("<tr>" + p.nombre + "</tr>");
-				td.appendTo(tr);
-
-				td = $("<tr>" + p.precio + "</tr>");
-				td.appendTo(tr);
-
-				td = $("<tr><a href='#' onclick='mostrar(" + p.id + ")'>mostrar</a></tr>");
-				td.appendTo(tr);
-
-				td = $("<tr><a href='#' onclick='eliminar(" + p.id + ")'>eliminar</a></tr>");
-				td.appendTo(tr);
+				$("<td>" + p.id + "</td>").appendTo(tr);
+				$("<td>" + p.nombre + "</td>").appendTo(tr);
+				$("<td>" + p.precio + "</td>").appendTo(tr);
+				$("<td><a href='#' onclick='mostrar(" + p.id + ")'>mostrar</a></td>").appendTo(tr);
+				$("<td><a href='#' onclick='eliminar(" + p.id + ")'>eliminar</a></td>").appendTo(tr);
 
 				tr.appendTo("#tabla-productos tbody");
 			}
@@ -132,7 +121,7 @@
 		};
 
 		var imprimirProductos = function() {
-			productoUtil.obtenerTodos(imprimirTabla2);
+			productoUtil.obtenerTodos(imprimirTabla1);
 		};
 
 		$(document).ready(function() {
@@ -142,21 +131,25 @@
 	</script>
 </head>
 <body>
-	<div id="container" class="center">
-		<h1>Productos</h1>
-		<form>
-			<input type="hidden" id="productoId">
-			<div class="form-group">
-				<label>Nombre</label>
-				<input type="text" id="nombre">
-			</div>
-			<div class="form-group">
-				<label>Precio</label>
-				<input type="number" id="precio">
-			</div>
+	<div class="container">
+		<div class="row">
+        	<div class="col-md-6 col-md-offset-3">
+				<h1>Productos</h1>
+				<form>
+					<input type="hidden" id="productoId">
+					<div class="form-group">
+						<label>Nombre</label>
+						<input type="text" id="nombre">
+					</div>
+					<div class="form-group">
+						<label>Precio</label>
+						<input type="number" id="precio">
+					</div>
 
-			<input type="button" value="Guardar" onclick="guardar()" class="btn btn-default center-block">
-		</form>
+					<input type="button" value="Guardar" onclick="guardar()" class="btn btn-default center-block">
+				</form>
+			</div>
+		</div>
 		<hr>
 		<table id="tabla-productos" class="table table-striped"> 
 			<thead>
