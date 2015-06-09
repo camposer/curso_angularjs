@@ -12,21 +12,6 @@
 	<script>
 		var productoUtil = new ProductoUtil();
 
-		var initProductoUtil = function() {
-			productoUtil.agregar({
-				nombre: "TV",
-				precio: 700
-			});
-			productoUtil.agregar({
-				nombre: "Cámara",
-				precio: 300
-			});
-			productoUtil.agregar({
-				nombre: "DVD", 
-				precio: 200
-			});
-		};
-
 		var imprimirTabla1 = function(productos) {
 			$("#tabla-productos tbody").empty();
 
@@ -63,14 +48,18 @@
 		};
 
 		var eliminar = function(id) {
-			productoUtil.eliminar(id);
-			imprimirProductos();
+			productoUtil.eliminar(id, imprimirProductos);
 		};
 
 		var guardar = function() {
-			var productoId = document.getElementById("productoId").value;
-			var nombre = document.getElementById("nombre").value;
-			var precio = document.getElementById("precio").value;
+			var productoId = $("#productoId").val();
+			var nombre = $("#nombre").val();
+			var precio = $("#precio").val();
+
+			var callback = function() {
+				limpiar();
+				imprimirProductos();
+			};
 
 			// TODO Mejorar validaciones de precio
 			if (/[a-z0-9 ]{2,}/i.test(nombre) && 
@@ -82,42 +71,29 @@
 				};		
 				if (productoId) {
 					p.id = productoId;
-					productoUtil.modificar(p);	
+					productoUtil.modificar(p, callback);	
 				} else {
-					productoUtil.agregar(p);	
+					productoUtil.agregar(p, callback);
 				}
 
-				limpiar();
-				imprimirProductos();
+				
 			} else {
 				window.alert("Nombre o precio inválido");
 			}
 		};
 
 		var mostrar = function(id) {
-			var p = productoUtil.obtener(id);
-
-			document
-				.getElementById("productoId")
-				.value = p.id;
-			document
-				.getElementById("nombre")
-				.value = p.nombre;
-			document
-				.getElementById("precio")
-				.value = p.precio;
+			productoUtil.obtener(id, function(p) {
+				$("#productoId").val(p.id);
+				$("#nombre").val(p.nombre);
+				$("#precio").val(p.precio);
+			});
 		};
 
 		var limpiar = function() {
-			document
-				.getElementById("productoId")
-				.value = "";
-			document
-				.getElementById("nombre")
-				.value = "";
-			document
-				.getElementById("precio")
-				.value = "";
+			$("#productoId").val("");
+			$("#nombre").val("");
+			$("#precio").val("");
 		};
 
 		var imprimirProductos = function() {
@@ -125,7 +101,6 @@
 		};
 
 		$(document).ready(function() {
-			initProductoUtil();
 			imprimirProductos();
 		});
 	</script>

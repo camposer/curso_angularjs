@@ -1,38 +1,37 @@
 function ProductoUtil() {
-	var productos = [];
-	var contador = 1;
 	var URL_BASE = "/productos";
 
-	this.agregar = function(p) {
-		p.id = contador++;
-		productos.push(p);
+	this.agregar = function(p, callback) {
+		$.ajax(URL_BASE, {
+			type: "post",
+			data: JSON.stringify(p), 
+			contentType: "application/json"
+		}).done(callback)
+		.fail(function() {
+			window.alert("Error al agregar");
+		});
 	};
 
-
-	var buscarPos = function(id) {
-		for (var i in productos) 
-			if (productos[i].id == id)
-				return i;
+	this.modificar = function(p, callback) {
+		$.ajax(URL_BASE + "/" + p.id, {
+			type: "put",
+			data: JSON.stringify(p), 
+			contentType: "application/json"
+		}).done(callback)
 	};
 
-	this.modificar = function(p) {
-		var pos = buscarPos(p.id);
-		if (pos)
-			productos[pos] = p;
+	this.eliminar = function(id, callback)  {
+		$.ajax(URL_BASE + "/" + id, {
+			type: "delete"
+		}).done(callback);
 	};
 
-	this.eliminar = function(id)  {
-		var pos = buscarPos(id);
-		if (pos)
-			productos.splice(pos, 1);
+	this.obtener = function(id, callback) {
+		$.ajax(URL_BASE + "/" + id, {
+			type: "get",
+			dataType: "json"
+		}).done(callback);
 	};
-
-	this.obtener = function(id) {
-		var pos = buscarPos(id);
-		if (pos)
-			return productos[pos];
-	};
-
 
 	this.obtenerTodos = function(callback) {
 		$.ajax(URL_BASE, {
