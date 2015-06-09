@@ -23,7 +23,7 @@ C:EJERCICIO3> node_64.exe app
 0. Refactorice el código de producto-json.html (ejercicio 2) para que ahora utilice la API Rest de /productos con jQuery.
 
 NOTA:
-- Para ver como utilizar la API con jQuery
+- Para ver cómo utilizar la API con jQuery
 	http://localhost:3000/ajax.html
 - Los ficheros producto.html y sus JS deberá copiarlos dentro de la carpeta public/producto del ejercicio3
 - Cambiar el nombre de producto-jquery.html a index.html

@@ -27,8 +27,6 @@
 	- https://openwebinars.net/tutorial-angularjs/
 - AngularJS 101 - Everything you need to know to get started
 	- http://es.slideshare.net/sbegaudeau/angular-js-101-everything-you-need-to-know-to-get-started
-- Introduction to AngularJS
-	- http://es.slideshare.net/sbegaudeau/angular-js-101-everything-you-need-to-know-to-get-started
 - The Art of AngularJS
 	- http://es.slideshare.net/mraible/the-art-of-angularjs
 
