@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html ng-app="Producto">
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="/stylesheets/bootstrap.css">
+</head>
+<body ng-controller="ProductoCtrl as ctrl">
+	<div class="container">
+		<h1>Productos</h1>
+		<input type="hidden" id="productoId">
+		<table id="tabla-form" class="tabla-centrada">
+			<tr>
+				<td>Nombre</td>
+				<td><input type="text" id="nombre"></td>
+			</tr>
+			<tr>
+				<td>Precio</td>
+				<td><input type="number" id="precio"></td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<input type="button" value="Guardar" onclick="guardar()">
+				</td>
+			</tr>
+		</table>
+		<hr>
+		<table id="tabla-productos" class="table table-striped"> 
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Nombre</th>
+					<th>Precio</th>
+					<th>Mostrar</th>
+					<th>Eliminar</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="p in ctrl.productos">
+					<td>{{ p.id }}</td>
+					<td>{{ p.nombre }}</td>
+					<td>{{ p.precio }}</td>
+					<td><a href="#" onclick="mostrar({{ p.id }})">mostrar</a></td>
+					<td><a href="#" onclick="eliminar({{ p.id }})">eliminar</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<script src="/javascripts/angular.js"></script>
+	<script src="js/ProductoUtil.js"></script>
+	<script>
+		var app = angular.module("Producto", []);
+		app.service('ProductoService', ProductoUtil);
+		app.controller('ProductoCtrl', [ 'ProductoService', '$scope', function(productoService, $scope) {
+
+			var initProductoUtil = function() {
+				productoService.agregar({
+					nombre: 'TV',
+					precio: 700
+				});
+				productoService.agregar({
+					nombre: 'Cámara',
+					precio: 300
+				});
+				productoService.agregar({
+					nombre: 'DVD', 
+					precio: 200
+				});
+			};
+
+			var init = function() {
+				initProductoUtil();
+				$scope.productos = productoService.obtenerTodos();
+			}
+
+			init();
+		}]);
+
+	</script>
+
+</body>
+</html>
