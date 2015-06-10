@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html ng-app="Calculadora">
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="css/bootstrap.css">
+</head>
+<body ng-controller="CalculadoraCtrl as ctrl">
+	<div class="container">
+		<h1>Calculadora</h1>
+		<form class="form-horizontal">
+		  <div class="form-group">
+		    <label for="op1" class="col-sm-2 control-label">Op1</label>
+		    <div class="col-sm-10">
+		      <input type="number" class="form-control" id="op1" placeholder="op1" ng-model="ctrl.params.op1">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="op2" class="col-sm-2 control-label">Op2</label>
+		    <div class="col-sm-10">
+		      <input type="number" class="form-control" id="op2" placeholder="op2" ng-model="ctrl.params.op2">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <div class="col-sm-offset-2 col-sm-10">
+		      <select id="operacion" class="form-control" ng-model="ctrl.params.operacion">
+		      	<option value=""></option>
+		      	<option value="+">sumar</option>
+		      	<option value="-">restar</option>
+		      	<option value="*">multiplicar</option>
+		      	<option value="/">dividir</option>
+		      </select>
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <div class="col-sm-offset-2 col-sm-10">
+		      <button type="button" class="btn btn-default" ng-click="ctrl.calcular1()">Calcular</button>
+		    </div>
+		  </div>
+		</form>
+
+		<hr>
+		<div>
+			{{ ctrl.resultado }} 
+		</div>
+		<br>
+		<div ng-show="ctrl.params.operacion">
+			{{ ctrl.params.op1 }} 
+			{{ ctrl.params.operacion }} 
+			{{ ctrl.params.op2 }} 
+			=
+			{{ ctrl.calcular2() }}
+		</div>
+		<br>
+		<div ng-show="ctrl.params.operacion">
+			{{ ctrl.params.op1 }} 
+			{{ ctrl.params.operacion }} 
+			{{ ctrl.params.op2 }} 
+			=
+			{{ eval('return ' + ctrl.params.op1 + ctrl.params.operacion + ctrl.params.op2) }} 
+		</div>
+	</div>
+
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/angular.js"></script>
+	<script>
+		(function() {
+			var hola = "";
+			var app = angular.module('Calculadora', []);
+			app.controller('CalculadoraCtrl', function() {
+				this.params = {
+					op1: null,
+					op2: null,
+					operacion: null
+				};
+
+				this.resultado = null;
+
+				this.calcular2 = function() {
+					var resultado;
+					var operacion = this.params.operacion;
+					var op1 = parseInt(this.params.op1);
+					var op2 = parseInt(this.params.op2);
+
+					if (operacion == '+')
+						resultado =  op1 + op2;
+					else if (operacion == '-')
+						resultado =  op1 - op2;
+					else if (operacion == '*')
+						resultado =  op1 * op2;
+					else if (operacion == '/')
+						resultado =  op1 / op2;
+
+					return resultado;
+				};
+
+				this.calcular1 = function() {
+					var operacion = this.params.operacion;
+					var op1 = parseInt(this.params.op1);
+					var op2 = parseInt(this.params.op2);
+
+					if (operacion == '+')
+						this.resultado =  op1 + ' + ' + op2 + ' = ' + (op1 + op2);
+					else if (operacion == '-')
+						this.resultado =  op1 + ' - ' + op2 + ' = ' + (op1 - op2);
+					else if (operacion == '*')
+						this.resultado =  op1 + ' * ' + op2 + ' = ' + (op1 * op2);
+					else if (operacion == '/')
+						this.resultado =  op1 + ' / ' + op2 + ' = ' + (op1 / op2);
+				};
+			});
+		})();
+	</script>
+</body>
+</html>

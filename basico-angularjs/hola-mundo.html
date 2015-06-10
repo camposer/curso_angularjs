@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="HolaMundo" ng-init="nombre = 'Juan'">
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="css/bootstrap.css">
+</head>
+<body>
+	<div class="container">
+		<div class="row" ng-controller="HolaMundoCtrl1 as ctrl">
+			<div class="col-md-6">
+				<p>{{ ctrl.mensaje + ' ' + nombre }}</p>
+			</div>
+		</div>
+
+		<div class="row" ng-controller="HolaMundoCtrl2 as ctrl">
+			<div class="col-md-6">
+				<p>{{ ctrl.mensaje + ' ' + nombre }}</p>
+			</div>
+		</div>
+	</div>
+
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/angular.js"></script>
+	<script>
+		(function() {
+			var hola = "";
+			var app = angular.module('HolaMundo', []);
+			app.controller('HolaMundoCtrl1', function() {
+				this.mensaje = "Hola";
+			});
+			app.controller('HolaMundoCtrl2', function() {
+				this.mensaje = "Hello";
+			});
+		})();
+	</script>
+</body>
+</html>

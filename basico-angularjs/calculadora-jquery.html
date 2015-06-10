@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html ng-app="Calculadora">
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="css/bootstrap.css">
+</head>
+<body ng-controller="CalculadoraCtrl as ctrl">
+	<div class="container">
+		<h1>Calculadora</h1>
+		<form class="form-horizontal">
+		  <div class="form-group">
+		    <label for="op1" class="col-sm-2 control-label">Op1</label>
+		    <div class="col-sm-10">
+		      <input type="number" class="form-control" id="op1" placeholder="op1">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="op2" class="col-sm-2 control-label">Op2</label>
+		    <div class="col-sm-10">
+		      <input type="number" class="form-control" id="op2" placeholder="op2">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <div class="col-sm-offset-2 col-sm-10">
+		      <select id="operacion" class="form-control">
+		      	<option value=""></option>
+		      	<option value="sumar">sumar</option>
+		      	<option value="restar">restar</option>
+		      	<option value="multiplicar">multiplicar</option>
+		      	<option value="dividir">dividir</option>
+		      </select>
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <div class="col-sm-offset-2 col-sm-10">
+		      <button type="button" class="btn btn-default" ng-click="ctrl.calcular()">Calcular</button>
+		    </div>
+		  </div>
+		</form>
+
+		<hr>
+		<div id="resultado"></div>
+	</div>
+
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/angular.js"></script>
+	<script>
+		(function() {
+			var hola = "";
+			var app = angular.module('Calculadora', []);
+			app.controller('CalculadoraCtrl', function() {
+				this.calcular = function() {
+					var resultado;
+					var operacion = $('#operacion').val();
+					var op1 = parseInt($('#op1').val());
+					var op2 = parseInt($('#op2').val());
+
+					if (operacion == 'sumar')
+						resultado =  op1 + ' + ' + op2 + ' = ' + (op1 + op2);
+					else if (operacion == 'restar')
+						resultado =  op1 + ' - ' + op2 + ' = ' + (op1 - op2);
+					else if (operacion == 'multiplicar')
+						resultado =  op1 + ' * ' + op2 + ' = ' + (op1 * op2);
+					else if (operacion == 'dividir')
+						resultado =  op1 + ' / ' + op2 + ' = ' + (op1 / op2);
+
+					if (resultado)
+						$('#resultado').html(resultado);
+				};
+			});
+		})();
+	</script>
+</body>
+</html>
