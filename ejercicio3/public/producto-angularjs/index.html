@@ -35,48 +35,20 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="p in ctrl.productos">
+				<tr ng-repeat="p in ctrl.productos()">
 					<td>{{ p.id }}</td>
 					<td>{{ p.nombre }}</td>
 					<td>{{ p.precio }}</td>
-					<td><a href="#" onclick="mostrar({{ p.id }})">mostrar</a></td>
-					<td><a href="#" onclick="eliminar({{ p.id }})">eliminar</a></td>
+					<td><a href="#" onclick="mostrar()">mostrar</a></td>
+					<td><a href="#" onclick="eliminar()">eliminar</a></td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
 
 	<script src="/javascripts/angular.js"></script>
-	<script src="js/ProductoUtil.js"></script>
-	<script>
-		var app = angular.module("Producto", []);
-		app.service('ProductoService', ProductoUtil);
-		app.controller('ProductoCtrl', [ 'ProductoService', '$scope', function(productoService, $scope) {
-
-			var initProductoUtil = function() {
-				productoService.agregar({
-					nombre: 'TV',
-					precio: 700
-				});
-				productoService.agregar({
-					nombre: 'Cámara',
-					precio: 300
-				});
-				productoService.agregar({
-					nombre: 'DVD', 
-					precio: 200
-				});
-			};
-
-			var init = function() {
-				initProductoUtil();
-				$scope.productos = productoService.obtenerTodos();
-			}
-
-			init();
-		}]);
-
-	</script>
-
+	<script src="js/app.js"></script>
+	<script src="js/service/ProductoService.js"></script>
+	<script src="js/controller/ProductoCtrl.js"></script>
 </body>
 </html>
