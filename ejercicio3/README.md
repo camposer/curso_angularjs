@@ -18,7 +18,7 @@ C:EJERCICIO3> node_64.exe app
 ##Actividades
 
 
-###PARTE 1
+###Parte 1
 
 0. Refactorice el código de producto-json.html (ejercicio 2) para que ahora utilice la API Rest de /productos con jQuery.
 
@@ -29,3 +29,7 @@ NOTA:
 - Cambiar el nombre de producto-jquery.html a index.html
 - Para ejecutar el proyecto ahora deberá introducir en el navegador:
 	http://localhost:3000/producto
+
+###Parte 2
+
+0. Refactorizar el ejercicio 2 utilizando AngularJS y Bootstrap. Debe crear al menos un módulo y un controlador asociado. Los métodos de productoUtil deberá moverlos al controlador.
