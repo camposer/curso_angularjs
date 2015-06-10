@@ -56,7 +56,7 @@
 			{{ ctrl.params.operacion }} 
 			{{ ctrl.params.op2 }} 
 			=
-			{{ eval('return ' + ctrl.params.op1 + ctrl.params.operacion + ctrl.params.op2) }} 
+			<span ng-bind="$eval(ctrl.params.op1 + ctrl.params.operacion + ctrl.params.op2)"></span>
 		</div>
 	</div>
 
