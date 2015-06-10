@@ -6,20 +6,20 @@
 </head>
 <body ng-controller="ProductoCtrl as ctrl">
 	<div class="container">
-		<h1>Productos</h1>
-		<input type="hidden" id="productoId">
+		<h1>{{ 'Productos' | uppercase}}</h1>
+		<input type="hidden" id="productoId" ng-model="ctrl.model.id">
 		<table id="tabla-form" class="tabla-centrada">
 			<tr>
 				<td>Nombre</td>
-				<td><input type="text" id="nombre"></td>
+				<td><input type="text" id="nombre" ng-model="ctrl.model.nombre"></td>
 			</tr>
 			<tr>
 				<td>Precio</td>
-				<td><input type="number" id="precio"></td>
+				<td><input type="number" id="precio" ng-model="ctrl.model.precio"></td>
 			</tr>
 			<tr>
 				<td colspan="2">
-					<input type="button" value="Guardar" onclick="guardar()">
+					<input type="button" value="Guardar" ng-click="ctrl.guardar()">
 				</td>
 			</tr>
 		</table>
@@ -35,12 +35,12 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="p in ctrl.productos()">
+				<tr ng-repeat="p in ctrl.productos() | orderBy:'precio'">
 					<td>{{ p.id }}</td>
 					<td>{{ p.nombre }}</td>
 					<td>{{ p.precio }}</td>
-					<td><a href="#" onclick="mostrar(p.id)">mostrar</a></td>
-					<td><a href="#" onclick="eliminar(p.id)">eliminar</a></td>
+					<td><a href="#" ng-click="ctrl.mostrar(p.id)">mostrar</a></td>
+					<td><a href="#" ng-click="ctrl.eliminar(p.id)">eliminar</a></td>
 				</tr>
 			</tbody>
 		</table>
