@@ -1,5 +1,4 @@
-app.controller('ProductoCtrl', [ 'ProductoService', '$scope', function(productoService, $scope) {
-
+app.controller('ProductoCtrl', [ 'ProductoService', function(productoService) {
 	this.productos = productoService.obtenerTodos;
 
 	var initProductoUtil = function() {
