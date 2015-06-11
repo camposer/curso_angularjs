@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app="scopeExample">
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="css/bootstrap.css">
+</head>
+<body>
+
+<div class="show-scope-demo">
+  <div ng-controller="GreetController">
+    Hello {{name}}!
+    <div ng-controller="AnidadoController">
+    	Hola {{name}}
+    </div>
+  </div>
+  <div ng-controller="ListController">
+    <ol>
+      <li ng-repeat="name in names">{{name}} from {{department}}</li>
+    </ol>
+  </div>
+</div>
+
+<div>
+	Department {{ department }}
+</div>
+
+
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/angular.js"></script>
+	<script>
+		angular.module('scopeExample', [])
+		.controller('GreetController', ['$scope', '$rootScope', function($scope, $rootScope) {
+		  $scope.name = 'World';
+		  $rootScope.department = 'Angular';
+		}])
+		.controller('ListController', ['$scope', function($scope) {
+		  $scope.names = ['Igor', 'Misko', 'Vojta'];
+		}])
+		.controller('AnidadoController', ['$scope', function($scope) {
+		  	$scope.name = 'Mundo';
+		}]);
+	</script>
+</body>
+</html>

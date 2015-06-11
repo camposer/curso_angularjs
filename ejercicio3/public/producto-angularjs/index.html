@@ -15,45 +15,10 @@
 <body ng-controller="ProductoCtrl as ctrl">
 	<div class="container">
 		<h1>{{ 'Productos' | uppercase}}</h1>
-		<form name="formProducto" ng-submit="formProducto.$valid && ctrl.guardar()" novalidate>
-			<input type="hidden" id="productoId" ng-model="ctrl.model.id">
-			<table id="tabla-form" class="tabla-centrada">
-				<tr>
-					<td>Nombre</td>
-					<td><input type="text" id="nombre" ng-model="ctrl.model.nombre" ng-pattern="/^.{2,}$/i" required></td>
-				</tr>
-				<tr>
-					<td>Precio</td>
-					<td><input type="number" id="precio" ng-model="ctrl.model.precio" min="1" required></td>
-				</tr>
-				<tr>
-					<td colspan="2">
-						<button class="btn btn-submit">Guardar</button>
-					</td>
-				</tr>
-			</table>
-		</form>
+	
+		<form-producto></form-producto>
 		<hr>
-		<table id="tabla-productos" class="table table-striped"> 
-			<thead>
-				<tr>
-					<th>Id</th>
-					<th>Nombre</th>
-					<th>Precio</th>
-					<th>Mostrar</th>
-					<th>Eliminar</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="p in ctrl.productos() | orderBy:'precio'">
-					<td>{{ p.id }}</td>
-					<td>{{ p.nombre }}</td>
-					<td>{{ p.precio }}</td>
-					<td><a href="#" ng-click="ctrl.mostrar(p.id)">mostrar</a></td>
-					<td><a href="#" ng-click="ctrl.eliminar(p.id)">eliminar</a></td>
-				</tr>
-			</tbody>
-		</table>
+		<lista-productos></lista-productos>
 	</div>
 
 	<script src="/javascripts/jquery-1.10.2.js"></script>
@@ -61,5 +26,7 @@
 	<script src="js/app.js"></script>
 	<script src="js/service/ProductoService.js"></script>
 	<script src="js/controller/ProductoCtrl.js"></script>
+	<script src="js/directive/FormProducto.js"></script>
+	<script src="js/directive/ListaProductos.js"></script>
 </body>
 </html>
