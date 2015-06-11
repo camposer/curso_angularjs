@@ -9,7 +9,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="p in ctrl.getProductos() | orderBy:'precio'">
+				<tr ng-repeat="p in productos | orderBy:'precio'">
 					<td>{{ p.id }}</td>
 					<td>{{ p.nombre }}</td>
 					<td>{{ p.precio }}</td>

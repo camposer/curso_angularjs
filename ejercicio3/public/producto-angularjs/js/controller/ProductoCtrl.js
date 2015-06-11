@@ -1,77 +1,56 @@
 (function() {
-	var app = angular.module('Producto');
-	
-	app.controller('ProductoCtrl', [ '$scope', 'ProductoService', function($scope, productoService) {
-		var productos;
+	angular
+	.module('Producto')
+	.controller('ProductoCtrl', [ '$scope', 'ProductoService', function($scope, productoService) {
+		$scope.productos = [];
 
-		this.getProductos = function() {
-			return productos;
-		}; 
-
-		this.model = {
+		$scope.model = {
 			id: null,
 			nombre: null,
 			precio: null
 		};
 
 		this.eliminar = function(id) {
-			productoService.eliminar(id);
+			productoService.eliminar(id, function() {
+				cargarProductos();
+			});
 		};
 
 		this.mostrar = function(id) {
-			var p = productoService.obtener(id);
-			this.model = {
-				id: p.id,
-				nombre: p.nombre,
-				precio: p.precio
-			};
+			productoService.obtener(id, function(p) {
+				$scope.model = p;
+				$scope.$apply();
+			});
 		}
 
 		this.guardar = function() {
-			var p = {
-				nombre: this.model.nombre,
-				precio: this.model.precio
-			};		
+			var callback = function() {
+				limpiarForm();
+				cargarProductos();
+			};
 
-			if (this.model.id) {
-				p.id = this.model.id;
-				productoService.modificar(p);	
-			} else {
-				productoService.agregar(p);	
-			}
+			if ($scope.model.id) 
+				productoService.modificar($scope.model, callback);
+			else 
+				productoService.agregar($scope.model, callback);
+		};
 
-			this.model = {
+		var limpiarForm = function() {
+			$scope.model = {
 				id: null,
 				nombre: null,
 				precio: null
 			};
-			//imprimirProductos(); // automático
 		};
 
-		var initProductoUtil = function() {
-			productoService.agregar({
-				nombre: 'TV',
-				precio: 700
-			});
-			productoService.agregar({
-				nombre: 'Cámara',
-				precio: 300
-			});
-			productoService.agregar({
-				nombre: 'DVD', 
-				precio: 200
-			});
-		};
-
-		var init = function() {
-			initProductoUtil();
+		var cargarProductos = function() {
 			productoService.obtenerTodos(function(_productos) {
-				productos = _productos;
+				$scope.productos = _productos;
 				$scope.$apply();
 			});
 		};
 
-		init();
+		cargarProductos();
 
 	}]);
 })();
