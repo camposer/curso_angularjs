@@ -1,4 +1,6 @@
 (function() {
+	const URL_BASE = '/productos';
+
 	var app = angular.module('Producto');
 	
 	app.service('ProductoService', function ProductoService() {
@@ -36,8 +38,11 @@
 		};
 
 
-		this.obtenerTodos = function() {
-			return productos;
+		this.obtenerTodos = function(callback) {
+			$.ajax(URL_BASE, {
+				type: 'get',
+				dataType: 'json'
+			}).done(callback);
 		};
 
 	});

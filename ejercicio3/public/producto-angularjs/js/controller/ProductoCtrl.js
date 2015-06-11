@@ -1,8 +1,12 @@
 (function() {
 	var app = angular.module('Producto');
 	
-	app.controller('ProductoCtrl', [ 'ProductoService', function(productoService) {
-		this.productos = productoService.obtenerTodos;
+	app.controller('ProductoCtrl', [ '$scope', 'ProductoService', function($scope, productoService) {
+		var productos;
+
+		this.getProductos = function() {
+			return productos;
+		}; 
 
 		this.model = {
 			id: null,
@@ -61,6 +65,10 @@
 
 		var init = function() {
 			initProductoUtil();
+			productoService.obtenerTodos(function(_productos) {
+				productos = _productos;
+				$scope.$apply();
+			});
 		};
 
 		init();
