@@ -32,4 +32,9 @@ NOTA:
 
 ###Parte 2
 
-0. Refactorizar el ejercicio 2 utilizando AngularJS y Bootstrap. Debe crear al menos un módulo y un controlador asociado. Los métodos de productoUtil deberá moverlos al controlador.
+0. Refactorizar el ejercicio 2 utilizando AngularJS y Bootstrap. Debe crear al menos un módulo y un controlador asociado. Los métodos de productoUtil deberá moverlos al controlador (o servicio).
+0. Incluir dos directivas, una para el formulario y otra para la vista.
+
+###Parte 3
+
+0. Refactorizar el ejercicio3-parte2 para que ahora utilice la API Rest con jQuery como en el ejercicio3-parte1. IMPORTANTE: Para reflejar los cambios en las vistas sobre los controladores realizados en callbacks, deberá refrescar el scope ($scope.$apply).
