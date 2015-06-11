@@ -1,0 +1,18 @@
+		<form name="formProducto" ng-submit="formProducto.$valid && ctrl.guardar()" novalidate>
+			<input type="hidden" id="productoId" ng-model="model.id">
+			<table id="tabla-form" class="tabla-centrada">
+				<tr>
+					<td>Nombre</td>
+					<td><input type="text" id="nombre" ng-model="model.nombre" ng-pattern="/^.{2,}$/i" required></td>
+				</tr>
+				<tr>
+					<td>Precio</td>
+					<td><input type="number" id="precio" ng-model="model.precio" min="1" required></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<button class="btn btn-submit">Guardar</button>
+					</td>
+				</tr>
+			</table>
+		</form>

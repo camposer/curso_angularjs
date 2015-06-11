@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html ng-app="Producto">
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="/stylesheets/bootstrap.css">
+	<style>
+		.ng-valid {
+			border-color: green;
+		}
+		.ng-invalid {
+			border-color: red;
+		}
+	</style>
+</head>
+<body ng-controller="ProductoCtrl as ctrl">
+	<div class="container">
+		<h1>{{ 'Productos' | uppercase}}</h1>
+	
+		<form-producto></form-producto>
+		<hr>
+		<lista-productos></lista-productos>
+	</div>
+
+	<script src="/javascripts/angular.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/service/ProductoService.js"></script>
+	<script src="js/controller/ProductoCtrl.js"></script>
+	<script src="js/directive/FormProducto.js"></script>
+	<script src="js/directive/ListaProductos.js"></script>
+</body>
+</html>
