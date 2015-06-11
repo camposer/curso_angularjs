@@ -37,4 +37,8 @@ NOTA:
 
 ###Parte 3
 
-0. Refactorizar el ejercicio3-parte2 para que ahora utilice la API Rest con jQuery como en el ejercicio3-parte1. IMPORTANTE: Para reflejar los cambios en las vistas sobre los controladores realizados en callbacks, deberá refrescar el scope ($scope.$apply).
+0. Refactorizar el ejercicio3-parte2 para que utilice la API Rest con jQuery como en el ejercicio3-parte1. IMPORTANTE: Para reflejar los cambios en las vistas sobre los controladores realizados en callbacks, deberá refrescar el scope ($scope.$apply).
+
+###Parte 4
+
+0. Refactorizar el ejercicio3-parte3 para que utilice la API Rest con el servicio $http de AngularJS. Además, se sugiere crear un nuevo principal Tienda que reciba como parámetro (de inyección) el módulo Producto con todas sus dependencias.
