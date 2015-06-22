@@ -42,3 +42,28 @@ NOTA:
 ###Parte 4
 
 0. Refactorizar el ejercicio3-parte3 para que utilice la API Rest con el servicio $http de AngularJS. Además, se sugiere crear un nuevo principal Tienda que reciba como parámetro (de inyección) el módulo Producto con todas sus dependencias.
+
+###Parte 5
+
+0. Tienda. Ahora debe agregar las pantallas Inicio y Carrito, además del CRUD de producto que ya hicimos en el ejercicio anterior.
+0. Para la lógica de almacenamiento del carrito debe utilizar el sessionStorage
+NOTA: 
+	- Primero implemente la parte visual y luego la parte funcional (sessionStore)
+0. Registre las compras y muestre en el 3er tab un gráfico de tarta. Modelo del objeto a enviar:
+NOTA: No incluir ID (sino no reconoce que es un nuevo objeto)
+```
+GET /compras
+POST /compras
+{
+	"productoId": 1,
+	"nombre": "TV",
+    "cantidad": 2
+}
+
+POST /compras
+{
+	"productoId": 2,
+	"nombre": "DVD",
+    "cantidad": 3
+}
+```

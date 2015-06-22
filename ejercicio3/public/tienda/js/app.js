@@ -1,3 +1,4 @@
 (function() {
-	angular.module("Producto", []);
+	angular.module('Tienda', [ 'Producto' ]);
+	angular.module('Producto', []);
 })();
