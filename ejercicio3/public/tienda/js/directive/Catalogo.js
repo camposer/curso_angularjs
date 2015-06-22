@@ -33,6 +33,7 @@
 			}
 
 			sessionStorage['productos'] = JSON.stringify(productosCarrito);
+			$rootScope.$emit('cargarProductos');
 			$rootScope.tabIdx = 1;
 		};
 

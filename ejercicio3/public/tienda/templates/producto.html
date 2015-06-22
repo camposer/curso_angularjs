@@ -1,21 +1,30 @@
-<form name="formProducto" ng-submit="formProducto.$valid && productoCtrl.guardar()" novalidate>
+<form name="formProducto" ng-submit="formProducto.$valid && productoCtrl.guardar()" class="form-horizontal" novalidate>
 	<input type="hidden" id="productoId" ng-model="model.id">
-	<table id="tabla-form" class="tabla-centrada">
-		<tr>
-			<td>Nombre</td>
-			<td><input type="text" id="nombre" ng-model="model.nombre" ng-pattern="/^.{2,}$/i" required></td>
-		</tr>
-		<tr>
-			<td>Precio</td>
-			<td><input type="number" id="precio" ng-model="model.precio" min="1" required></td>
-		</tr>
-		<tr>
-			<td colspan="2">
-				<button class="btn btn-submit">Guardar</button>
-			</td>
-		</tr>
-	</table>
+
+  <div class="form-group">
+    <label for="nombre" class="col-sm-2 control-label">Nombre</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" id="nombre" placeholder="Nombre" ng-model="model.nombre" ng-pattern="/^.{2,}$/i" required>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="precio" class="col-sm-2 control-label">Precio</label>
+    <div class="col-sm-4">
+      <input type="number" class="form-control" id="precio" placeholder="Precio" ng-model="model.precio" min="1" required>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-4">
+      <button type="submit" class="btn btn-default">Guardar</button>
+    </div>
+  </div>
+
 </form>
+
+<hr>
+
 <table id="tabla-productos" class="table table-striped"> 
 	<thead>
 		<tr>

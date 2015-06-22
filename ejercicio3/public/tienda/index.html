@@ -12,16 +12,28 @@
 		}
 	</style>
 </head>
-<body>
-	<div class="container" ng-controller="MainCtrl as ctrl">
+<body ng-controller="MainCtrl as ctrl">
+	<div class="container">
 		<h1>Tienda artículos eletrónicos</h1>
 
-		<a href="#" ng-click="ctrl.setActive(0)">Catálogo</a>&nbsp;
-		<a href="#" ng-click="ctrl.setActive(1)">Carrito</a>&nbsp;
-		<a href="#" ng-click="ctrl.setActive(2)">Producto</a>
-		<br>
+		<ul class="nav nav-pills">
+		  <li role="presentation" ng-class="{ 'active': ctrl.isActive(0)}">
+		  	<a href="#" ng-click="ctrl.setActive(0)">Catálogo</a>
+		  </li>
+		  <li role="presentation" ng-class="{ 'active': ctrl.isActive(1)}">
+		  	<a href="#" ng-click="ctrl.setActive(1)">Carrito</a>
+		  </li>
+		  <li role="presentation" ng-class="{ 'active': ctrl.isActive(2)}">
+		  	<a href="#" ng-click="ctrl.setActive(2)">Producto</a>
+		  </li>
+		</ul>
 
-		<div class="tab" ng-show="ctrl.isActive(0)">
+		<br>
+	</div>
+
+
+	<div class="container">
+		<div ng-show="ctrl.isActive(0)">
 			<catalogo></catalogo>
 		</div>
 

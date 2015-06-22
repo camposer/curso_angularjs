@@ -6,12 +6,12 @@
 			restrict: 'E',
 			templateUrl: 'templates/carrito.html',
 			scope: true,
-			controller: [ '$scope', 'CompraService', carritoCtrl],
+			controller: [ '$scope', '$rootScope', 'CompraService', carritoCtrl],
 			controllerAs: 'carritoCtrl'
 		};
 	});
 
-	var carritoCtrl = function($scope, compraService) {
+	var carritoCtrl = function($scope, $rootScope, compraService) {
 		$scope.productos = [];
 
 		var cargarProductos = function() {
@@ -42,9 +42,10 @@
 				});
 			}
 
-			sessionStorage['productos'] = productos = [];
+			sessionStorage['productos'] = $scope.productos = [];
 		};
 
+		$rootScope.$on('cargarProductos', cargarProductos);
 		cargarProductos();
 	};
 })();
