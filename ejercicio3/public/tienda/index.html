@@ -13,7 +13,7 @@
 	</style>
 </head>
 <body>
-	<div class="container" ng-controller="InicioCtrl as ctrl">
+	<div class="container" ng-controller="MainCtrl as ctrl">
 		<h1>Tienda artículos eletrónicos</h1>
 
 		<a href="#" ng-click="ctrl.setActive(0)">Catálogo</a>&nbsp;
@@ -21,19 +21,16 @@
 		<a href="#" ng-click="ctrl.setActive(2)">Producto</a>
 		<br>
 
-		
-		<div class="tab" ng-show="ctrl.isActive(0)" ng-controller="CatalogoCtrl as catalogoCtrl">
+		<div class="tab" ng-show="ctrl.isActive(0)">
 			<catalogo></catalogo>
 		</div>
 
-		<div ng-show="ctrl.isActive(1)" ng-controller="CarritoCtrl as carritoCtrl">
+		<div ng-show="ctrl.isActive(1)">
 			<carrito></carrito>
 		</div>
 
-		<div ng-show="ctrl.isActive(2)" ng-controller="ProductoCtrl as productoCtrl">
-			<form-producto></form-producto>
-			<hr>
-			<lista-productos></lista-productos>
+		<div ng-show="ctrl.isActive(2)">
+			<producto></producto>
 		</div>
 	</div>
 
@@ -42,13 +39,9 @@
 	<script src="js/service/ProductoService.js"></script>
 	<script src="js/service/CompraService.js"></script>
 
-	<script src="js/controller/ProductoCtrl.js"></script>
-	<script src="js/controller/InicioCtrl.js"></script>
-	<script src="js/controller/CatalogoCtrl.js"></script>
-	<script src="js/controller/CarritoCtrl.js"></script>
+	<script src="js/controller/MainCtrl.js"></script>
 
-	<script src="js/directive/FormProducto.js"></script>
-	<script src="js/directive/ListaProductos.js"></script>
+	<script src="js/directive/Producto.js"></script>
 	<script src="js/directive/Catalogo.js"></script>
 	<script src="js/directive/Carrito.js"></script>
 

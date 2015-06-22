@@ -1,10 +1,50 @@
 (function() {
-	var app = angular.module('Producto');
+	var app = angular.module('Tienda');
 	
 	app.directive('carrito', function() {
 		return {
 			restrict: 'E',
-			templateUrl: 'templates/carrito.html'
+			templateUrl: 'templates/carrito.html',
+			scope: true,
+			controller: [ '$scope', 'CompraService', carritoCtrl],
+			controllerAs: 'carritoCtrl'
 		};
 	});
+
+	var carritoCtrl = function($scope, compraService) {
+		$scope.productos = [];
+
+		var cargarProductos = function() {
+			$scope.productos = [];
+			if (sessionStorage['productos'])
+				$scope.productos = JSON.parse(sessionStorage['productos']);
+		};
+
+		this.obtenerTotal = function() {
+			var total = 0;
+
+			for (var i in $scope.productos)  {
+				var p = $scope.productos[i];
+				total += p.cantidad * p.precio;
+			}
+
+			return total;
+		};
+
+		this.comprar = function() {
+			for (var i in $scope.productos) {
+				var p = $scope.productos[i];
+
+				compraService.comprar({
+					productoId: p.id,
+					nombre: p.nombre,
+					cantidad: p.cantidad
+				});
+			}
+
+			sessionStorage['productos'] = productos = [];
+		};
+
+		cargarProductos();
+	};
 })();
