@@ -1,0 +1,28 @@
+<form name="formCarrito" ng-submit="formCarrito.$valid && carritoCtrl.comprar()" novalidate>
+
+	<table class="table table-striped"> 
+		<thead>
+			<tr>
+				<th>Nombre</th>
+				<th>Precio</th>
+				<th>Cantidad</th>
+				<th>Total</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="p in productos">
+				<td>{{ p.nombre }}</td>
+				<td>{{ p.precio }}</td>
+				<td>{{ p.cantidad }}</td>	
+				<td>{{ p.cantidad * p.precio }}</td>	
+			</tr>
+			<tr>
+				<td colspan="4" class="text-right">
+					Total: {{ carritoCtrl.obtenerTotal() }}
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<button class="btn btn-submit">Comprar</button>
+</form>
