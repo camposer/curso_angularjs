@@ -2,7 +2,7 @@
 	const URL_BASE = '/productos';
 
 	angular
-	.module('Producto')
+	.module('Tienda')
 	.service('ProductoService', [ '$http', function ProductoService($http) {
 		this.agregar = function(p, callback) {
 			$http.post(URL_BASE, p).success(callback);
