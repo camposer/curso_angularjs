@@ -8,9 +8,11 @@ Estudiar las herramientas de generación y gestión de código del entorno JS (N
 ##Instrucciones
 
 Para ejecutar:
+```
 > npm install
 > bower install
 > grunt serve
+```
 
 ##Actividades
 
