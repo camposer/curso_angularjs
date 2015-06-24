@@ -1,14 +1,15 @@
 'use strict';
 
 angular.module('tiendaApp')
-  	.controller('CarritoCtrl', [ '$scope', '$sessionStorage', 'compraService', function($scope, $sessionStorage, compraService) {
-		$scope.$storage = $sessionStorage;
+	// FIXME Cambiar ss por sessionStorage (se dejó así por razones demostrativas)
+  	.controller('CarritoCtrl', [ '$scope', '$sessionStorage', 'compraService', function($scope, ss, compraService) {
+		$scope.$storage = ss;
 
 		this.obtenerTotal = function() {
 			var total = 0;
 
-			for (var i in $sessionStorage.productos)  {
-				var p = $sessionStorage.productos[i];
+			for (var i in ss.productos)  {
+				var p = ss.productos[i];
 				total += p.cantidad * p.precio;
 			}
 
@@ -16,8 +17,8 @@ angular.module('tiendaApp')
 		};
 
 		this.comprar = function() {
-			for (var i in $sessionStorage.productos) {
-				var p = $sessionStorage.productos[i];
+			for (var i in ss.productos) {
+				var p = ss.productos[i];
 
 				compraService.comprar({
 					productoId: p.id,
@@ -26,7 +27,7 @@ angular.module('tiendaApp')
 				});
 			}
 
-			$sessionStorage.$reset();
+			ss.$reset();
 		};
 
 		//$rootScope.$on('cargarProductos', cargarProductos);
