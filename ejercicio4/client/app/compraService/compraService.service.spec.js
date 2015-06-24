@@ -1,5 +1,6 @@
 'use strict';
 
+/*
 describe('Service: compraService', function () {
 
   // load the service's module
@@ -16,3 +17,4 @@ describe('Service: compraService', function () {
   });
 
 });
+*/

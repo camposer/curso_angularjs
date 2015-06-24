@@ -1,5 +1,6 @@
 'use strict';
 
+/*
 describe('Controller: ProductoCtrl', function () {
 
   // load the controller's module
@@ -19,3 +20,4 @@ describe('Controller: ProductoCtrl', function () {
     expect(1).toEqual(1);
   });
 });
+*/
