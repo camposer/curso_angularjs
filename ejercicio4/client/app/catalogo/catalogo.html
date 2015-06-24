@@ -1,0 +1,25 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container">
+	<form name="formCatalogo" ng-submit="formCatalogo.$valid && catalogoCtrl.agregar()" novalidate>
+
+		<table class="table table-striped"> 
+			<thead>
+				<tr>
+					<th>Nombre</th>
+					<th>Precio</th>
+					<th>Cantidad</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="p in productos">
+					<td>{{ p.nombre }}</td>
+					<td>{{ p.precio }}</td>
+					<td><input type="number" ng-model="p.cantidad" min="0" required></td>	
+				</tr>
+			</tbody>
+		</table>
+
+		<button class="btn btn-submit">Agregar</button>
+	</form>
+</div>

@@ -1,0 +1,51 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container">
+	<form name="formProducto" ng-submit="formProducto.$valid && productoCtrl.guardar()" class="form-horizontal" novalidate>
+		<input type="hidden" id="productoId" ng-model="model.id">
+
+	  <div class="form-group">
+	    <label for="nombre" class="col-sm-2 control-label">Nombre</label>
+	    <div class="col-sm-4">
+	      <input type="text" class="form-control" id="nombre" placeholder="Nombre" ng-model="model.nombre" ng-pattern="/^.{2,}$/i" required>
+	    </div>
+	  </div>
+
+	  <div class="form-group">
+	    <label for="precio" class="col-sm-2 control-label">Precio</label>
+	    <div class="col-sm-4">
+	      <input type="number" class="form-control" id="precio" placeholder="Precio" ng-model="model.precio" min="1" required>
+	    </div>
+	  </div>
+
+	  <div class="form-group">
+	    <div class="col-sm-offset-2 col-sm-4">
+	      <button type="submit" class="btn btn-default">Guardar</button>
+	    </div>
+	  </div>
+
+	</form>
+
+	<hr>
+
+	<table id="tabla-productos" class="table table-striped"> 
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Nombre</th>
+				<th>Precio</th>
+				<th>Mostrar</th>
+				<th>Eliminar</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="p in productos | orderBy:'precio'">
+				<td>{{ p.id }}</td>
+				<td>{{ p.nombre }}</td>
+				<td>{{ p.precio }}</td>
+				<td><a href="#" ng-click="productoCtrl.mostrar(p.id)">mostrar</a></td>
+				<td><a href="#" ng-click="productoCtrl.eliminar(p.id)">eliminar</a></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
