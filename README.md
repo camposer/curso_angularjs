@@ -38,3 +38,15 @@
 	- Curso https://www.codeschool.com/courses/shaping-up-with-angular-js
 	- Diapositivas http://courseware.codeschool.com/shaping-up-with-angular-js/Slides/level01-05.pdf
 	- Código https://github.com/codeschool/ShapingUpWithAngular.js
+- NodeJS
+	- https://nodejs.org/
+- NPM
+	- https://www.npmjs.com/
+- Bower
+	- http://bower.io/
+- Grunt
+	- http://gruntjs.com/
+- Karma
+	- http://karma-runner.github.io/0.12/index.html
+- Yeoman
+	- http://yeoman.io/
